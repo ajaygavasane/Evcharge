@@ -1,0 +1,497 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       
+
+        <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+    /*global section*/
+    :root{
+        --blue:blue;
+        --black:rgb(36, 38, 10);
+        --light-color:#032239;
+        --box-shadow: 0 .5rem 1.5rem rgb(106, 118, 223);
+        --border: 2rem solid rgba(0,0,0.1);
+        --outline: .1rem solid rgba(0,0,0.1);
+    }
+
+    *{
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: all .2s linear;
+    }
+
+    html{
+        font-size: 62.5%;
+        overflow-x:hidden ;
+        scroll-behavior:smooth ;
+        scroll-padding-top: 7rem;
+    }
+    body{
+        background:#eee ;
+    }
+
+    section{
+        padding: 2rem 9%;
+    }
+
+    .heading{
+        text-align: center;
+        padding: 2rem 0;
+        padding-bottom:3rem;
+        font-size: 3.5rem;
+        color: var(--black);
+    }
+    .heading span{
+        background: var(--blue);
+        color: white;
+        display: inline-block;
+        padding:.5rem 3rem ;
+        clip-path: polygon(100% 0,93% 50%,100% 99%,0% 100%,7% 50%,0% 0%);
+    }
+    .btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    font-size: 1.7rem;
+    border: .2rem solid var(--black);
+    border-radius: .5rem;
+    color: var(--black);
+    background: none;
+    }
+    .btn:hover{
+        background: var(--blue);
+        color: white;
+    }
+    /*global section complete*/
+
+
+    /*nav section */
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content:space-between ;
+        padding: 2rem 9%;
+        background: #fff;
+        height: 13rem;
+        box-shadow: var(--box-shadow);
+    }
+
+    .header .logo img{
+        height: 15rem;
+        
+    }
+    .header .logo i{
+        color: var(--blue);
+    }
+    .header .navbar a{
+        font-size: 1.7rem;
+        margin: 0 1rem;
+        color: var(--black);
+    }
+    .header .navbar a:hover{
+        color: var(--blue);
+    }
+    .header .icons div{
+        height: 4.5rem;
+        width: 4.5rem;
+        line-height: 4.5rem;
+        border-radius: .5rem;
+        background-color: #eee;
+        color: var(--blue);
+        font-size: 2rem;
+        margin-right: .3rem;    
+        text-align: center;
+    }
+
+    .header .icons div:hover{
+        background:var(--blue) ;
+        color: white;
+        cursor: pointer;
+    }
+    #menu-btn{
+        display:none ;
+    }
+    .header .navbar.active{
+        right: 2rem;
+        transition: .4s linear;
+    }
+    .header .search-form{
+        position: absolute;
+        top: 110%;
+        right: -110%;
+        width: 50rem;
+        height: 5rem;
+        background:#fff ;
+        border-radius: .5rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        box-shadow: var(--box-shadow);
+    }
+    .header .search-form.active{
+        right: 2rem;
+        transition: .4s linear;
+    }
+
+    .header .search-form input{
+        height: 100%;
+        width: 100%;
+        background: none;
+        text-transform: none;
+        font-size: 1.6rem;
+        color: var(--blue);
+        padding: 0 1.5rem;
+    }
+
+    .header .search-form label{
+        font-size: 2.2rem;
+        padding-right: 1.5rem;
+        color: var(--black);
+        cursor: pointer;
+    }
+
+    .header .search-form label:hover{
+        color:var(--blue) ;
+    }
+    .header .shopping-cart{
+        position: absolute;
+        top: 110%;
+        right: -110%;
+        padding: 1rem;
+        border-radius: .5rem;
+        box-shadow: var(--box-shadow);
+        width: 35rem;
+        background: white;
+
+    }
+    .header .shopping-cart.active{
+        right: 2rem;
+        transition: .4s linear;
+    }
+    .header .shopping-cart .box{
+        display: flex;
+        align-items: center;
+        gap:1rem;
+        position: relative;
+        margin: 1rem 0;
+    }
+    .header .shopping-cart .box img{
+        height: 10rem;
+    }
+    .header .shopping-cart .box .fa-trash{
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        cursor: pointer;
+        color: var(--light-color);
+        transform: translateY(-50%);
+    }
+    .header .shopping-cart .box .fa-trash:hover{
+        color: var(--blue);
+    }
+    .header .shopping-cart .box .content h3{
+        color: var(--blue);
+        font-size: 1.7rem;
+        padding-bottom: 1rem;
+    }
+    .header .shopping-cart .box .content span{
+        color: var(--light-color);
+        font-size: 1.6rem;
+    }
+
+    .header .shopping-cart .box .content .quantity{
+    padding-left: 1rem;
+    }
+    .header .shopping-cart .total{
+        font-size: 2.5rem;
+        padding: 1rem 0;
+        text-align: center;
+        color: var(--black);
+    }
+
+    .header .shopping-cart .btn{
+        display: block;
+        text-align: center;
+        margin: 1rem 0;
+    }
+    .header .login-form{
+        border: 0px solid;
+        position: absolute;
+        top: 110%;
+        right: -110%;
+        width: 35rem;
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+        border-radius: .5rem;
+        background: white;
+        text-align: center;
+    }
+    .header .login-form.active{
+        right: 2rem;
+        transform: .4 linear;
+    }
+    .header .login-form h3{
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        color: var(--black);
+    }
+    .header .login-form .box{
+        width: 100%;
+    margin: .7rem 0;
+    background:#eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+        text-transform: none;
+    }
+    .header .login-form p{
+        font-size: 1.4rem;
+        padding: .5rem 0;
+        color: var(--light-color);
+    }
+    .header .login-form p a{
+        text-decoration: dashed;
+        color: var(--blue);
+    }
+
+
+    /* form css*/
+    section {
+  padding: 13rem;
+}
+
+section h2 {
+  text-align: center;
+  padding: 2rem 0;
+  padding-bottom: 3rem;
+  font-size: 3.5rem;
+  color: var(--blue);
+}
+
+section label {
+  display: block;
+  font-size: 2rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+section .box {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+  box-shadow: 1px 1px 4px blue;
+}
+
+section .btn {
+  display: block;
+  width: 100%;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  border: 0.2rem solid var(--black);
+  border-radius: 0.5rem;
+  color: var(--black);
+  background: none;
+  text-align: center;
+}
+
+section .btn:hover {
+  background: var(--blue);
+  color: white;
+}       
+
+
+
+
+
+
+
+
+
+
+    @media (max-width:991px) {
+        html{
+            font-size: 55%;
+        }
+        .header{
+            padding: 2rem;
+        }
+        section{
+            padding: 2rem ;
+        }
+        #user-regis{
+            padding-top: 14rem;
+        }
+    }
+
+    @media (max-width:768px) {
+        #menu-btn{
+            display: inline-block;
+        }
+        .header .search-form{
+        width: 90%;   
+        }
+        .header .navbar{
+            position: absolute;
+            top: 110%;
+            right: -110%;
+            width: 30rem; 
+            box-shadow: var(--box-shadow);
+            border-radius: .5rem;
+            background: white;
+        }
+        .header .navbar a{
+            font-size: 2rem;
+            margin: 2rem 2.5rem;
+            display:block ;
+        }
+    }
+    @media (max-width:450px) {
+        html{
+            font-size: 50%;
+        }
+        .heading{
+            font-size: 2.5rem;
+        }
+    }
+        </style>
+    </head>
+    <body>
+        <!--Nav section-->
+        <header class="header">
+            <a href="#" class="logo"><img src="image/charge-removebg-preview.png" id="logo-1" alt=""></i></a> 
+        
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="#">Setting</a>
+            <a href="#">Help</a>
+            <a href="#">Contact</a>
+            <a href="#">Details</a>
+        </nav>
+        <div class="icons">
+            <div class="fa fa-bars" id="menu-btn">   </div>
+            <div class="fa fa-search" id="search-btn">   </div>
+            <div class="fa fa-star" id="map-btn">   </div>
+            <div class="fa fa-user" id="login-btn">   </div>
+        </div>
+        <form class="search-form">
+            <input type="search" id="search-box" name="" placeholder="search here">
+            <label for="search-box" class="fa fa-search"></label>
+        </form>
+        <div class="shopping-cart">
+            <div class="box">
+                <i class="fa fa-trash"></i>
+                <img src="image/im1.jpeg" alt="">
+                <div class="content">
+                    <h3>Pump1</h3>
+                    <span class="price">6777</span>
+                    <span class="quantity">Qty : 1</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fa fa-trash"></i>
+                <img src="image/im2.jpeg" alt="">
+                <div class="content">
+                    <h3>Pump1</h3>
+                    <span class="price">6777</span>
+                    <span class="quantity">Qty : 1</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fa fa-trash"></i>
+                <img src="image/im3.webp" alt="">
+                <div class="content">
+                    <h3>Pump1</h3>
+                    <span class="price">6777</span>
+                    <span class="quantity">Qty : 1</span>
+                </div>
+            </div>
+            <div class="total">total : 765</div>
+            <a href="#" class="btn">Checkout</a>
+        </div>
+        <form action="#" class="login-form">
+            <h3>Login Now</h3>
+            <input type="email" name="" placeholder="Enter Email" class="box">
+            <input type="password" name="" placeholder="Enter Password" class="box">
+            <p>Forgot Your password <a href="#">Click me</a></p>
+            <p>Don't have account <a href="#">Create here</a></p>
+            <input type="submit" value="login Now" class="btn">
+        </form>
+    </header>
+
+
+    <section class="regis">
+        <h2 id="user-regis">Book The appointement</h2>
+        <form name="registrationForm" onsubmit="return validateForm()" method="post" action="your_registration_handler.php" id="registrationForm">
+
+            <label for="username" style="font-weight: 1000;">Username:</label><br>
+            <input type="text" id="username" name="username" placeholder="Customer name" class="box"><br><br>
+        
+            <label for="email" style="font-weight: 1000;">Email:</label><br>
+            <input type="email" id="email" name="email" class="box" placeholder="Customer email"><br><br>
+            <label for="phone">Phone Number:</label><br>
+            <input type="text" id="phone" name="phone" class="box" placeholder="Your Phone Number"><br><br>
+
+            <label for="vehicleType" style="font-weight: 1000;">Electric Vehicle Type:</label><br>
+            <select id="vehicleType" name="vehicleType" class="box">
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+            <option value="scooter">Scooter</option>
+            </select><br><br>
+
+            <label for="vehicleDocs" style="font-weight: 1000;">Vehicle Documents:</label><br>
+            <input type="file" id="vehicleDocs" name="vehicleDocs[]" multiple class="box"><br><br>
+
+            <label for="license" style="font-weight: 1000;">License:</label><br>
+            <input type="file" id="license" name="license[]" multiple class="box"><br><br>
+
+            <input type="submit" value="Book Appointment" style="font-weight: 1000;" class="btn">
+  </form>
+</section>
+    
+<script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Perform form validation or submission logic here
+            // For demonstration purposes, let's simulate successful form submission
+            simulateSuccess();
+        });
+
+        function simulateSuccess() {
+            // Simulate a successful form submission
+            Swal.fire({
+                icon: 'success',
+                title: 'Registration Successful!',
+                text: 'Thank you for registering.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
+
+    </body>
+    </html>
